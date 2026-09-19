@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jibril Aminu Allied Health Sciences - Student Academic Results Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="site-wrapper">
+    <!-- Portal Header -->
+    <header class="portal-header">
+      <div class="header-container">
+        <div class="institution-branding">
+          <div class="logo-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="crest-icon">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          <div class="branding-text">
+            <h1 class="portal-title">JIBRIL AMINU ALLIED HEALTH SCIENCES</h1>
+            <p class="portal-subtitle">Student Academic Results Portal</p>
+          </div>
+        </div>
+        <div class="session-badge" aria-label="Current Academic Session">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          2025/2026 Academic Session
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Search Form Section -->
+      <section id="form-section" class="portal-card">
+        <div class="card-header">
+          <h2>Check Examination Results</h2>
+          <p class="instruction-text">Please enter your matriculation details below to access your official semester record.</p>
+        </div>
+
+        <form id="result-form" class="portal-form" novalidate>
+          <div class="form-group">
+            <label for="student-name">Full Name <span class="required-asterisk" aria-hidden="true">*</span></label>
+            <input 
+              type="text" 
+              id="student-name" 
+              name="studentName" 
+              class="form-control" 
+              placeholder="e.g. John Doe" 
+              required 
+              autocomplete="name"
+            />
+            <span class="error-message" id="name-error" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="matric-number">Matric Number <span class="required-asterisk" aria-hidden="true">*</span></label>
+            <input 
+              type="text" 
+              id="matric-number" 
+              name="matricNumber" 
+              class="form-control" 
+              placeholder="e.g. AHS/2023/1042" 
+              required 
+              autocomplete="off"
+            />
+            <span class="error-message" id="matric-error" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="semester-select">Semester <span class="required-asterisk" aria-hidden="true">*</span></label>
+            <select id="semester-select" name="semester" class="form-control" required>
+              <option value="" disabled selected>Select Semester</option>
+              <option value="1st Semester">1st Semester</option>
+              <option value="2nd Semester">2nd Semester</option>
+            </select>
+            <span class="error-message" id="semester-error" aria-live="polite"></span>
+          </div>
+
+          <button type="submit" id="submit-btn" class="btn-primary">
+            <span>CHECK RESULT</span>
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </form>
+      </section>
+
+      <!-- Dynamic Screen-Reader Status Region -->
+      <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+      <!-- Loading State Overlay / Container -->
+      <div id="loading-state" class="portal-card loading-card hidden" aria-hidden="true">
+        <div class="spinner-container">
+          <div class="spinner"></div>
+        </div>
+        <p class="loading-text">Retrieving academic record...</p>
+        <p class="loading-subtext">Connecting to institutional database...</p>
+      </div>
+
+      <!-- Results Display Section -->
+      <section id="result-section" class="portal-card result-card hidden" aria-hidden="true">
+        <div class="result-header">
+          <div class="official-watermark" aria-hidden="true">OFFICIAL TRANSCRIPT</div>
+          <div class="result-title-area">
+            <h2>Semester Grade Point Average (SGPA) Statement</h2>
+            <span class="status-tag verified">Verified Record</span>
+          </div>
+          
+          <div class="student-meta-grid">
+            <div class="meta-item">
+              <span class="meta-label">Student Name</span>
+              <span class="meta-value" id="display-name">---</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Matric Number</span>
+              <span class="meta-value" id="display-matric">---</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Session</span>
+              <span class="meta-value">2025/2026</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Semester</span>
+              <span class="meta-value" id="display-semester">---</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th scope="col">Course Code</th>
+                <th scope="col">Course Title</th>
+                <th scope="col" class="text-center">Units</th>
+                <th scope="col" class="text-center">Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-bold">AHS 201</td>
+                <td>Introduction to Allied Health</td>
+                <td class="text-center">3</td>
+                <td class="text-center"><span class="grade-pill grade-a">A</span></td>
+              </tr>
+              <tr>
+                <td class="font-bold">ANA 201</td>
+                <td>Human Anatomy II</td>
+                <td class="text-center">3</td>
+                <td class="text-center"><span class="grade-pill grade-a">A</span></td>
+              </tr>
+              <tr>
+                <td class="font-bold">PHY 201</td>
+                <td>Human Physiology II</td>
+                <td class="text-center">3</td>
+                <td class="text-center"><span class="grade-pill grade-b">B</span></td>
+              </tr>
+              <tr>
+                <td class="font-bold">BCH 201</td>
+                <td>Biochemistry II</td>
+                <td class="text-center">3</td>
+                <td class="text-center"><span class="grade-pill grade-a">A</span></td>
+              </tr>
+              <tr>
+                <td class="font-bold">PHA 201</td>
+                <td>Basic Pharmacology</td>
+                <td class="text-center">2</td>
+                <td class="text-center"><span class="grade-pill grade-a">A</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Academic Summary Card -->
+        <div class="summary-container">
+          <div class="summary-box">
+            <span class="summary-label">Total Units Registered</span>
+            <span class="summary-value">14</span>
+          </div>
+          <div class="summary-box">
+            <span class="summary-label">Total Grade Points</span>
+            <span class="summary-value">63</span>
+          </div>
+          <div class="summary-box highlight">
+            <span class="summary-label">Cumulative GPA (CGPA)</span>
+            <span class="summary-value cgpa">4.50 <span class="cgpa-scale">/ 5.00</span></span>
+          </div>
+        </div>
+
+        <div class="transcript-footer">
+          <p>Remarks: <strong>EXCELLENT STANDING - DEAN'S HONOUR LIST</strong></p>
+          <p class="disclaimer-note">This official transcript is generated electronically.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Prank Modal Overlay -->
+    <div id="prank-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
+      <div class="modal-card">
+        <div class="prank-icon">😂</div>
+        <h2 id="modal-title" class="prank-headline">GOT YOU 😂</h2>
+        <p id="modal-desc" class="prank-subtext">Relax, it's just a prank.</p>
+        <button type="button" id="reset-btn" class="btn-prank-reset">
+          <span>CHECK AGAIN</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="portal-footer">
+      <p>&copy; 2026 Jibril Aminu Allied Health Sciences. All rights reserved.</p>
+      <p class="sub-footer-text">Institutional Academic Information Systems</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
